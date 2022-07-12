@@ -6,8 +6,8 @@ const app = express();
 app.use(express.json());
 dotenv.config();
 const PORT = process.env.PORT;
+const CONNECTION_URL = process.env.CONNECTION_URL;
 
-const CONNECTION_URL = `mongodb+srv://sheshank_memories:123123123@cluster0.gjzmo.mongodb.net/?retryWrites=true&w=majority`;
 app.use("/user", userRoutes);
 
 app.get("/", (req, res) => res.send("HEllo"));

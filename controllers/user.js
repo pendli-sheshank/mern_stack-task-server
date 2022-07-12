@@ -30,6 +30,7 @@ export const Register = async (req, res) => {
     const token = jwt.sign({ email: result.email.id, id: result._id }, "test", {
       expiresIn: "2h",
     });
+    result.token = token;
 
     res.status(200).json({ ...result, token });
   } catch (error) {
@@ -51,7 +52,7 @@ export const Signin = async (req, res) => {
 
     const token = jwt.sign(
       { email: userSignIn.email, id: userSignIn._id },
-      "test",
+      process.env.TOKEN_KEY,
       { expiresIn: "2h" }
     );
     res.status(200).json({ result: userSignIn, token });
